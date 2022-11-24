@@ -6,7 +6,7 @@ ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) # 允许连接不在kn
 
 ssh.connect("127.0.0.1",22,"root", "stdx+2022")
 
-execmd = 'ls -alh' #需要输入的命令
+execmd = 'ls' #需要输入的命令
 
 stdin, stdout, stderr = ssh.exec_command (execmd)
 
