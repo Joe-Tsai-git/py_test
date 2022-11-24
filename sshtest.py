@@ -4,9 +4,9 @@ ssh = paramiko.SSHClient()
 
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) # 允许连接不在know_hosts文件中的主机
 
-ssh.connect("192.168.8.1",2222,"admin", "asuaadmin")
+ssh.connect("127.0.0.1",22,"root", "stdx+2022")
 
-execmd = 'pwd' #需要输入的命令
+execmd = 'ls -al' #需要输入的命令
 
 stdin, stdout, stderr = ssh.exec_command (execmd)
 
