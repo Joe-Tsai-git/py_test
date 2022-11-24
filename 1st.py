@@ -1,5 +1,5 @@
 print("ceshi Remote success! Hello your ABiii world")
-print("asdfYsdfadsfa")
+print("Nov. 25")
 import prettytable as pt
 tb = pt.PrettyTable()
 tb.field_names = ['Author', 'wwcheng']
