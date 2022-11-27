@@ -1,3 +1,8 @@
 ---
-cisco:
+#cisco:
+#    platform: ios
+cisco_group1:
+    platform: ios
+ 
+cisco_group2:
     platform: ios

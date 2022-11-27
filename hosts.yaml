@@ -2,10 +2,22 @@
 SW1:
     hostname: 10.0.2.21
     username: python
-    password: '123'
+    pasSWord: '123'
+    platform: ios
     groups:
-        - cisco
+        - cisco_group1
 SW2:
     hostname: 10.0.2.22
+    platform: ios
     groups:
-        - cisco
+        - cisco_group1
+SW3:
+    hostname: 10.0.2.23
+    platform: ios
+    groups:
+        - cisco_group2
+SW4:
+    hostname: 10.0.2.24
+    platform: ios
+    groups:
+        - cisco_group2
