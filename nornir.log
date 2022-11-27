@@ -1,0 +1,4 @@
+2022-11-27 21:34:06,507 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'interfaces']} on 2 hosts
+2022-11-27 21:36:27,254 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'interfaces_ip']} on 2 hosts
+2022-11-27 21:41:28,458 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh clock'} on 2 hosts
+2022-11-27 21:41:52,245 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh clock'} on 2 hosts
