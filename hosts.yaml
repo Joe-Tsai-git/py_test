@@ -6,18 +6,30 @@ SW1:
     platform: ios
     groups:
         - cisco_group1
+    data:
+        building: '1'
+        level: '1'
 SW2:
     hostname: 10.0.2.22
     platform: ios
     groups:
         - cisco_group1
+    data:
+        building: '1'
+        level: '2'
 SW3:
     hostname: 10.0.2.23
     platform: ios
     groups:
         - cisco_group2
+    data:
+        builiding: '2'
+        level: '1'
 SW4:
     hostname: 10.0.2.24
     platform: ios
     groups:
         - cisco_group2
+    data:
+        building: '2'
+        level: '2'
