@@ -1,0 +1,11 @@
+---
+SW1:
+    hostname: 10.0.2.21
+    username: python
+    password: '123'
+    groups:
+        - cisco
+SW2:
+    hostname: 10.0.2.22
+    groups:
+        - cisco
