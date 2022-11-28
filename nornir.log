@@ -93,3 +93,5 @@ Device settings: cisco_ios 10.0.2.24:22
 2022-11-27 22:45:01,174 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip arp'} on 2 hosts
 2022-11-27 22:47:59,351 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip arp'} on 1 hosts
 2022-11-27 22:52:07,454 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip arp'} on 3 hosts
+2022-11-28 08:45:56,642 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip arp'} on 3 hosts
+2022-11-28 08:46:29,553 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip arp'} on 3 hosts
