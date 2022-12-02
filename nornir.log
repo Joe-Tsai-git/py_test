@@ -1,19 +1,103 @@
-2022-11-27 21:34:06,507 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'interfaces']} on 2 hosts
-2022-11-27 21:36:27,254 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'interfaces_ip']} on 2 hosts
-2022-11-27 21:41:28,458 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh clock'} on 2 hosts
-2022-11-27 21:41:52,245 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh clock'} on 2 hosts
-2022-11-27 21:54:49,444 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int brief'} on 2 hosts
-2022-11-27 21:56:28,201 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int brief'} on 2 hosts
-2022-11-27 21:56:28,207 - nornir.core.task -    ERROR -      start() - Host 'SW3': task 'netmiko_send_command' failed with traceback:
+    scrapli_conn = task.host.get_connection("scrapli", task.nornir.config)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_scrapli/connection.py", line 105, in open
+    connection.open()
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/driver/base/sync_driver.py", line 88, in open
+    self.channel.channel_authenticate_ssh(
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/decorators.py", line 216, in decorate
+    return _multiprocessing_timeout(
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/decorators.py", line 113, in _multiprocessing_timeout
+    return future.result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/usr/lib64/python3.9/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/channel/sync_channel.py", line 287, in channel_authenticate_ssh
+    buf = self.read()
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/channel/sync_channel.py", line 69, in read
+    buf = self.transport.read()
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/decorators.py", line 216, in decorate
+    return _multiprocessing_timeout(
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/decorators.py", line 113, in _multiprocessing_timeout
+    return future.result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/usr/lib64/python3.9/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/transport/plugins/system/transport.py", line 165, in read
+    raise ScrapliConnectionError(msg) from exc
+scrapli.exceptions.ScrapliConnectionError: encountered EOF reading from transport; typically means the device closed the connection
+
+2022-12-02 19:07:58,958 - nornir.core.task -    ERROR -      start() - Host 'SW2': task 'get_prompt' failed with traceback:
 Traceback (most recent call last):
-  File "/root/venv3/lib64/python3.9/site-packages/netmiko/base_connection.py", line 1046, in establish_connection
-    self.remote_conn_pre.connect(**ssh_connect_params)
-  File "/root/venv3/lib64/python3.9/site-packages/paramiko/client.py", line 381, in connect
-    raise NoValidConnectionsError(errors)
-paramiko.ssh_exception.NoValidConnectionsError: [Errno None] Unable to connect to port 22 on 10.0.2.23
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/transport/plugins/system/ptyprocess.py", line 486, in read
+    s = self.fileobj.read1(size)
+OSError: [Errno 5] Input/output error
 
 During handling of the above exception, another exception occurred:
 
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/transport/plugins/system/transport.py", line 158, in read
+    buf = self.session.read(65535)
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/transport/plugins/system/ptyprocess.py", line 491, in read
+    raise EOFError("End Of File (EOF). Exception style platform.")
+EOFError: End Of File (EOF). Exception style platform.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_scrapli/tasks/core/get_prompt.py", line 19, in get_prompt
+    scrapli_conn = task.host.get_connection("scrapli", task.nornir.config)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_scrapli/connection.py", line 105, in open
+    connection.open()
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/driver/base/sync_driver.py", line 88, in open
+    self.channel.channel_authenticate_ssh(
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/decorators.py", line 216, in decorate
+    return _multiprocessing_timeout(
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/decorators.py", line 113, in _multiprocessing_timeout
+    return future.result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/usr/lib64/python3.9/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/channel/sync_channel.py", line 287, in channel_authenticate_ssh
+    buf = self.read()
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/channel/sync_channel.py", line 69, in read
+    buf = self.transport.read()
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/decorators.py", line 216, in decorate
+    return _multiprocessing_timeout(
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/decorators.py", line 113, in _multiprocessing_timeout
+    return future.result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/usr/lib64/python3.9/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/root/venv3/lib64/python3.9/site-packages/scrapli/transport/plugins/system/transport.py", line 165, in read
+    raise ScrapliConnectionError(msg) from exc
+scrapli.exceptions.ScrapliConnectionError: encountered EOF reading from transport; typically means the device closed the connection
+
+2022-12-02 19:08:01,595 -  nornir.core -     INFO -        run() - Running task 'send_configs' with args {'configs': ['interface loop99', 'description Nornir loopback']} on 5 hosts
+2022-12-02 19:08:01,966 -  nornir.core -     INFO -        run() - Running task 'send_command' with args {'command': 'wr mem'} on 5 hosts
+2022-12-02 19:08:10,564 -  nornir.core -     INFO -        run() - Running task 'load_data' with args {} on 2 hosts
+2022-12-02 19:45:02,893 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh int switchport'} on 5 hosts
+2022-12-02 19:45:03,034 - nornir.core.task -    ERROR -      start() - Host 'SW7': task 'netmiko_send_command' failed with traceback:
 Traceback (most recent call last):
   File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
     r = self.task(self, **self.params)
@@ -25,155 +109,24 @@ Traceback (most recent call last):
     conn_obj.open(
   File "/root/venv3/lib64/python3.9/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
     connection = ConnectHandler(**parameters)
-  File "/root/venv3/lib64/python3.9/site-packages/netmiko/ssh_dispatcher.py", line 365, in ConnectHandler
-    return ConnectionClass(*args, **kwargs)
-  File "/root/venv3/lib64/python3.9/site-packages/netmiko/base_connection.py", line 439, in __init__
-    self._open()
-  File "/root/venv3/lib64/python3.9/site-packages/netmiko/base_connection.py", line 444, in _open
-    self.establish_connection()
-  File "/root/venv3/lib64/python3.9/site-packages/netmiko/base_connection.py", line 1068, in establish_connection
-    raise NetmikoTimeoutException(msg)
-netmiko.exceptions.NetmikoTimeoutException: TCP connection to device failed.
+  File "/root/venv3/lib64/python3.9/site-packages/netmiko/ssh_dispatcher.py", line 354, in ConnectHandler
+    device_type = kwargs["device_type"]
+KeyError: 'device_type'
 
-Common causes of this problem are:
-1. Incorrect hostname or IP address.
-2. Wrong TCP port.
-3. Intermediate firewall blocking access.
-
-Device settings: cisco_ios 10.0.2.23:22
-
-
-
-2022-11-27 21:56:28,208 - nornir.core.task -    ERROR -      start() - Host 'SW4': task 'netmiko_send_command' failed with traceback:
-Traceback (most recent call last):
-  File "/root/venv3/lib64/python3.9/site-packages/netmiko/base_connection.py", line 1046, in establish_connection
-    self.remote_conn_pre.connect(**ssh_connect_params)
-  File "/root/venv3/lib64/python3.9/site-packages/paramiko/client.py", line 381, in connect
-    raise NoValidConnectionsError(errors)
-paramiko.ssh_exception.NoValidConnectionsError: [Errno None] Unable to connect to port 22 on 10.0.2.24
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
-    r = self.task(self, **self.params)
-  File "/root/venv3/lib64/python3.9/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
-    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
-  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 494, in get_connection
-    self.open_connection(
-  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 546, in open_connection
-    conn_obj.open(
-  File "/root/venv3/lib64/python3.9/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
-    connection = ConnectHandler(**parameters)
-  File "/root/venv3/lib64/python3.9/site-packages/netmiko/ssh_dispatcher.py", line 365, in ConnectHandler
-    return ConnectionClass(*args, **kwargs)
-  File "/root/venv3/lib64/python3.9/site-packages/netmiko/base_connection.py", line 439, in __init__
-    self._open()
-  File "/root/venv3/lib64/python3.9/site-packages/netmiko/base_connection.py", line 444, in _open
-    self.establish_connection()
-  File "/root/venv3/lib64/python3.9/site-packages/netmiko/base_connection.py", line 1068, in establish_connection
-    raise NetmikoTimeoutException(msg)
-netmiko.exceptions.NetmikoTimeoutException: TCP connection to device failed.
-
-Common causes of this problem are:
-1. Incorrect hostname or IP address.
-2. Wrong TCP port.
-3. Intermediate firewall blocking access.
-
-Device settings: cisco_ios 10.0.2.24:22
-
-
-
-2022-11-27 21:59:30,113 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int brief'} on 2 hosts
-2022-11-27 22:00:49,399 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int brief'} on 2 hosts
-2022-11-27 22:01:04,595 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int brief'} on 2 hosts
-2022-11-27 22:01:19,554 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int brief'} on 2 hosts
-2022-11-27 22:36:09,164 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int brief'} on 2 hosts
-2022-11-27 22:44:26,144 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip arp'} on 2 hosts
-2022-11-27 22:45:01,174 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip arp'} on 2 hosts
-2022-11-27 22:47:59,351 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip arp'} on 1 hosts
-2022-11-27 22:52:07,454 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip arp'} on 3 hosts
-2022-11-28 08:45:56,642 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip arp'} on 3 hosts
-2022-11-28 08:46:29,553 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip arp'} on 3 hosts
-2022-11-28 17:23:34,952 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip arp'} on 3 hosts
-2022-11-30 11:06:16,112 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip arp'} on 3 hosts
-2022-12-02 11:13:20,096 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip arp'} on 3 hosts
-2022-12-02 11:13:27,071 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip arp'} on 3 hosts
-2022-12-02 11:40:09,658 -  nornir.core -     INFO -        run() - Running task 'config' with args {} on 4 hosts
-2022-12-02 11:40:09,667 - nornir.core.task -    ERROR -      start() - Host 'SW2': task 'config' failed with traceback:
-Traceback (most recent call last):
-  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
-    r = self.task(self, **self.params)
-  File "/root/py/py_test/nornir6.py", line 8, in config
-    cisco.run(task_context=netmiko_send_config, config_file='commands.cfg')
-TypeError: run() missing 1 required positional argument: 'task'
-
-2022-12-02 11:40:09,669 - nornir.core.task -    ERROR -      start() - Host 'SW3': task 'config' failed with traceback:
-Traceback (most recent call last):
-  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
-    r = self.task(self, **self.params)
-  File "/root/py/py_test/nornir6.py", line 8, in config
-    cisco.run(task_context=netmiko_send_config, config_file='commands.cfg')
-TypeError: run() missing 1 required positional argument: 'task'
-
-2022-12-02 11:40:09,669 - nornir.core.task -    ERROR -      start() - Host 'SW4': task 'config' failed with traceback:
-Traceback (most recent call last):
-  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
-    r = self.task(self, **self.params)
-  File "/root/py/py_test/nornir6.py", line 8, in config
-    cisco.run(task_context=netmiko_send_config, config_file='commands.cfg')
-TypeError: run() missing 1 required positional argument: 'task'
-
-2022-12-02 11:40:09,669 - nornir.core.task -    ERROR -      start() - Host 'SW1': task 'config' failed with traceback:
-Traceback (most recent call last):
-  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
-    r = self.task(self, **self.params)
-  File "/root/py/py_test/nornir6.py", line 8, in config
-    cisco.run(task_context=netmiko_send_config, config_file='commands.cfg')
-TypeError: run() missing 1 required positional argument: 'task'
-
-2022-12-02 11:40:28,794 -  nornir.core -     INFO -        run() - Running task 'config' with args {} on 4 hosts
-2022-12-02 15:16:03,374 -  nornir.core -     INFO -        run() - Running task "Backing up SW's configuration" with args {} on 4 hosts
-2022-12-02 15:16:55,221 -  nornir.core -     INFO -        run() - Running task "Backing up SW's configuration" with args {} on 4 hosts
-2022-12-02 15:22:43,066 -  nornir.core -     INFO -        run() - Running task "Backing up SW's configuration" with args {} on 2 hosts
-2022-12-02 15:23:11,717 -  nornir.core -     INFO -        run() - Running task "Backing up SW's configuration" with args {} on 2 hosts
-2022-12-02 16:06:36,143 -  nornir.core -     INFO -        run() - Running task 'load_data' with args {} on 2 hosts
-2022-12-02 16:06:36,148 - nornir.core.task -    ERROR -      start() - Host 'SW2': task 'load_yaml' failed with traceback:
-Traceback (most recent call last):
-  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
-    r = self.task(self, **self.params)
-  File "/root/venv3/lib64/python3.9/site-packages/nornir_utils/plugins/tasks/data/load_yaml.py", line 24, in load_yaml
-    with open(file, "r") as f:
-FileNotFoundError: [Errno 2] No such file or directory: 'SW2.yaml'
-
-2022-12-02 16:06:36,149 - nornir.core.task -    ERROR -      start() - Host 'SW1': task 'load_yaml' failed with traceback:
-Traceback (most recent call last):
-  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
-    r = self.task(self, **self.params)
-  File "/root/venv3/lib64/python3.9/site-packages/nornir_utils/plugins/tasks/data/load_yaml.py", line 24, in load_yaml
-    with open(file, "r") as f:
-FileNotFoundError: [Errno 2] No such file or directory: 'SW1.yaml'
-
-2022-12-02 16:06:36,150 - nornir.core.task -    ERROR -      start() - Host 'SW2': task 'load_data' failed with traceback:
-Traceback (most recent call last):
-  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
-    r = self.task(self, **self.params)
-  File "/root/py/py_test/nornir8.py", line 9, in load_data
-    data = task.run(task=load_yaml, file=f'{task.host}.yaml')
-  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 174, in run
-    raise NornirSubTaskError(task=run_task, result=r)
-nornir.core.exceptions.NornirSubTaskError: Subtask: load_yaml (failed)
-
-
-2022-12-02 16:06:36,151 - nornir.core.task -    ERROR -      start() - Host 'SW1': task 'load_data' failed with traceback:
-Traceback (most recent call last):
-  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
-    r = self.task(self, **self.params)
-  File "/root/py/py_test/nornir8.py", line 9, in load_data
-    data = task.run(task=load_yaml, file=f'{task.host}.yaml')
-  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 174, in run
-    raise NornirSubTaskError(task=run_task, result=r)
-nornir.core.exceptions.NornirSubTaskError: Subtask: load_yaml (failed)
-
-
-2022-12-02 16:08:56,711 -  nornir.core -     INFO -        run() - Running task 'load_data' with args {} on 2 hosts
+2022-12-02 19:52:14,235 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh int switchport'} on 4 hosts
+2022-12-02 19:54:52,912 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh int switchport', 'use_textfsm': True} on 4 hosts
+2022-12-02 20:00:57,192 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh int switchport', 'use_textfsm': True} on 4 hosts
+2022-12-02 20:11:49,381 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh int switchport', 'use_textfsm': True} on 4 hosts
+2022-12-02 20:25:10,306 -  nornir.core -     INFO -        run() - Running task 'host_parm' with args {} on 4 hosts
+2022-12-02 20:40:21,990 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int bri', 'use_textfsm': True} on 4 hosts
+2022-12-02 20:47:24,152 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int bri', 'use_textfsm': True} on 4 hosts
+2022-12-02 20:47:57,398 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int bri', 'use_textfsm': True} on 4 hosts
+2022-12-02 20:49:41,291 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int bri', 'use_textfsm': True} on 4 hosts
+2022-12-02 20:52:42,978 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int bri', 'use_textfsm': True} on 4 hosts
+2022-12-02 21:02:07,786 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int bri', 'use_textfsm': True} on 4 hosts
+2022-12-02 21:04:13,560 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int bri', 'use_textfsm': True} on 4 hosts
+2022-12-02 21:05:51,566 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int bri', 'use_textfsm': True} on 4 hosts
+2022-12-02 21:07:23,086 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int bri', 'use_textfsm': True} on 4 hosts
+2022-12-02 21:08:23,850 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int bri', 'use_textfsm': True} on 4 hosts
+2022-12-02 21:11:22,217 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int bri', 'use_textfsm': True} on 4 hosts
+2022-12-02 21:12:01,457 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int bri', 'use_textfsm': True} on 4 hosts

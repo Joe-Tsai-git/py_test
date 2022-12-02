@@ -33,3 +33,15 @@ SW4:
     data:
         building: '2'
         level: '2'
+#SW7:
+#    hostname: 10.0.2.27
+#    username: python
+#    password: '123'
+##    groups:
+##        - cisco_group3
+#    connection_options:
+#        scrapli:
+#            platform: cisco_iosxe
+#            extras:
+#                ssh_config_file: True
+#                auth_strict_key: False
