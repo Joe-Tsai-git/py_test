@@ -1,0 +1,88 @@
+!
+
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname SW3
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$L2H8$.TdErRUjW9.EckEGoYwqj0
+!
+username python privilege 15 secret 5 $1$E5Gj$MhSCpVpwCZZvZxyws2x/b/
+no aaa new-model
+clock timezone CST 8 0
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain-name test.com
+ip cef
+no ipv6 cef
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+!
+interface Ethernet0/1
+!
+interface Ethernet0/2
+!
+interface Ethernet0/3
+!
+interface Vlan1
+ ip address 10.0.2.23 255.255.255.0
+!
+ip forward-protocol nd
+!
+ip http server
+ip http secure-server
+!
+ip ssh source-interface Vlan1
+ip ssh version 2
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login local
+!
+!
+!
+end

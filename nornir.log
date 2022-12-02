@@ -133,3 +133,47 @@ Traceback (most recent call last):
 TypeError: run() missing 1 required positional argument: 'task'
 
 2022-12-02 11:40:28,794 -  nornir.core -     INFO -        run() - Running task 'config' with args {} on 4 hosts
+2022-12-02 15:16:03,374 -  nornir.core -     INFO -        run() - Running task "Backing up SW's configuration" with args {} on 4 hosts
+2022-12-02 15:16:55,221 -  nornir.core -     INFO -        run() - Running task "Backing up SW's configuration" with args {} on 4 hosts
+2022-12-02 15:22:43,066 -  nornir.core -     INFO -        run() - Running task "Backing up SW's configuration" with args {} on 2 hosts
+2022-12-02 15:23:11,717 -  nornir.core -     INFO -        run() - Running task "Backing up SW's configuration" with args {} on 2 hosts
+2022-12-02 16:06:36,143 -  nornir.core -     INFO -        run() - Running task 'load_data' with args {} on 2 hosts
+2022-12-02 16:06:36,148 - nornir.core.task -    ERROR -      start() - Host 'SW2': task 'load_yaml' failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_utils/plugins/tasks/data/load_yaml.py", line 24, in load_yaml
+    with open(file, "r") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'SW2.yaml'
+
+2022-12-02 16:06:36,149 - nornir.core.task -    ERROR -      start() - Host 'SW1': task 'load_yaml' failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_utils/plugins/tasks/data/load_yaml.py", line 24, in load_yaml
+    with open(file, "r") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'SW1.yaml'
+
+2022-12-02 16:06:36,150 - nornir.core.task -    ERROR -      start() - Host 'SW2': task 'load_data' failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/py/py_test/nornir8.py", line 9, in load_data
+    data = task.run(task=load_yaml, file=f'{task.host}.yaml')
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: load_yaml (failed)
+
+
+2022-12-02 16:06:36,151 - nornir.core.task -    ERROR -      start() - Host 'SW1': task 'load_data' failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/py/py_test/nornir8.py", line 9, in load_data
+    data = task.run(task=load_yaml, file=f'{task.host}.yaml')
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: load_yaml (failed)
+
+
+2022-12-02 16:08:56,711 -  nornir.core -     INFO -        run() - Running task 'load_data' with args {} on 2 hosts
