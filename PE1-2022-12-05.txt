@@ -1,0 +1,225 @@
+[V300R021C00SPC100T]
+#
+ sysname PE1
+#
+ set workmode sch-tm standalone
+#
+stp disable
+#
+authentication-profile name default_authen_profile
+authentication-profile name dot1x_authen_profile
+authentication-profile name dot1xmac_authen_profile
+authentication-profile name mac_authen_profile
+authentication-profile name multi_authen_profile
+authentication-profile name portal_authen_profile
+#
+dhcp enable
+#
+rsa peer-public-key 10.0.2.21
+ public-key-code begin
+  3067
+    0260
+      BE6FD43F 2AE9968E 2BA6EC11 3FEDE5C6 E38EAE00 9D54BD6D E5F681A9 E31427BF
+      086D4ECF 7A19284E B0095091 2A904680 51DE7AC3 00E9865F 7CDACFD4 3D33F3E0
+      E413F1A6 A8343185 B419807F 21AA3C92 29845059 E3BCD3A9 7C2E858C B3D54B0D
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 10.0.2.24
+ public-key-code begin
+  3067
+    0260
+      D379C3BC 815B8B5A 9F5D73A2 51EE60EA 650B400A 97E126DC A49468AA DEEEE34D
+      C1B996AC 325F5C6C 9BFBF43A F0903375 7574237A FEBB12D7 3514CFAF 19D6689E
+      AAF922B4 2FF69D98 E9395E7C DDB9FABB 98CCC6A4 232EF3E0 7D1E28B0 9D6CB0A5
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+ ecc peer-public-key 10.0.2.32 encoding-type der
+  public-key-code begin
+    04809E82 66CC8F13 DD2809B9 3A4C29BF E9A1DC1B 9DAA12D8 A3171927 AE123103
+    53E2005D 5E4727C2 05D15B81 B11B5478 8C1831E5 D2D900CE E72E98AE F6965664
+    51
+  public-key-code end
+ peer-public-key end
+#
+ ecc peer-public-key 10.0.2.31 encoding-type der
+  public-key-code begin
+    04686FAD 61FC05EC 556ACAB5 12D92E2E 9326335A 7876F16B 17595CC7 3647A9AF
+    18894B0E 3C8A731B 8850381F 2219DB00 7DC27913 54D064D9 BE19123B BB0A532D
+    7C
+  public-key-code end
+ peer-public-key end
+#
+ ecc peer-public-key 10.0.2.34 encoding-type der
+  public-key-code begin
+    0450416D 4087F2BA C15A6B78 038DFE4A 414919B6 BDC28963 6398C1E3 BD5A3F39
+    AF19680F 2380974F AD8E1431 3DF8CD21 F778210E B4E1F4E1 7332DE92 09EF8B89
+    6D
+  public-key-code end
+ peer-public-key end
+#
+ip vpn-instance ABC
+ ipv4-family
+  route-distinguisher 2345:1
+  vpn-target 2345:11 export-extcommunity
+  vpn-target 2345:11 import-extcommunity
+#
+radius-server template default
+#
+mpls lsr-id 2.2.2.2
+mpls
+#
+mpls ldp
+#
+#
+pki realm default
+ certificate-check none
+#
+ssl policy default_policy type server
+ pki-realm default
+ version tls1.2 
+ ciphersuite rsa_aes_128_sha256 rsa_aes_256_sha256 ecdhe_rsa_aes128_gcm_sha256 ecdhe_rsa_aes256_gcm_sha384 
+#
+ike proposal default
+ encryption-algorithm aes-256 aes-192 aes-128 
+ dh group14 
+ authentication-algorithm sha2-512 sha2-384 sha2-256 
+ authentication-method pre-share
+ integrity-algorithm hmac-sha2-256 
+ prf hmac-sha2-256 
+#
+free-rule-template name default_free_rule
+#
+portal-access-profile name portal_access_profile
+#
+aaa
+ authentication-scheme default
+  authentication-mode local
+ authentication-scheme radius
+  authentication-mode radius
+ authorization-scheme default
+  authorization-mode local
+ accounting-scheme default
+  accounting-mode none
+ local-aaa-user password policy administrator
+ domain default
+  authentication-scheme default
+  accounting-scheme default
+  radius-server default
+ domain default_admin
+  authentication-scheme default
+  accounting-scheme default
+ local-user admin password irreversible-cipher $1a$4*2<K4o!gG$[1[2YV6RV$4z%o(>k3.'0[yR-/;rcYan*]A.lHS)$
+ local-user admin privilege level 15
+ local-user admin service-type ssh
+ local-user python password irreversible-cipher $1a$DOf~%|uQ!P$QY\M-z#|@Hr<;@I"X#C57EAP9&IOD-v~gP!KFLXW$
+ local-user python privilege level 15
+ local-user python service-type terminal http
+#
+firewall zone Local
+#
+mi-server
+#
+interface GigabitEthernet0/0/0
+ ip binding vpn-instance ABC
+ ip address 10.1.12.2 255.255.255.0
+#
+interface GigabitEthernet0/0/1
+ ip address 10.1.23.2 255.255.255.0
+ mpls
+ mpls ldp
+#
+interface GigabitEthernet0/0/2
+#
+interface GigabitEthernet0/0/3
+#
+interface GigabitEthernet0/0/4
+#
+interface GigabitEthernet0/0/5
+ ip address 10.0.2.32 255.255.255.0
+#
+interface GigabitEthernet0/0/6
+ description VirtualPort
+#
+interface NULL0
+#
+interface LoopBack0
+ ip address 2.2.2.2 255.255.255.255
+#
+bgp 2345
+ router-id 2.2.2.2
+ undo default ipv4-unicast
+ peer 5.5.5.5 as-number 2345
+ peer 5.5.5.5 connect-interface LoopBack0
+ #
+ ipv4-family unicast
+  undo synchronization
+  undo peer 5.5.5.5 enable
+ #
+ ipv4-family vpnv4
+  policy vpn-target
+  peer 5.5.5.5 enable
+ #
+ ipv4-family vpn-instance ABC
+  import-route ospf 1
+#
+ospf 1 vpn-instance ABC
+ import-route bgp permit-ibgp
+ area 0.0.0.0
+  network 10.1.12.2 0.0.0.0
+#
+ospf 100 router-id 2.2.2.2
+ area 0.0.0.0
+  network 2.2.2.2 0.0.0.0
+  network 10.1.23.2 0.0.0.0
+#
+undo icmp name timestamp-request receive
+#
+ snmp-agent local-engineid 800007DB03000000000000
+ snmp-agent trap enable
+ snmp-agent 
+#
+ ssh user admin authentication-type password
+ ssh client 10.0.2.32 assign ecc-key 10.0.2.32
+ ssh client 10.0.2.21 assign rsa-key 10.0.2.21
+ ssh client 10.0.2.31 assign ecc-key 10.0.2.31
+ ssh client 10.0.2.24 assign rsa-key 10.0.2.24
+ ssh client 10.0.2.34 assign ecc-key 10.0.2.34
+ ssh client first-time enable 
+ stelnet server enable 
+ ssh server permit interface all
+#
+fib regularly-refresh disable
+#
+user-interface con 0
+ authentication-mode aaa
+ idle-timeout 1440 0
+user-interface vty 0
+ authentication-mode aaa
+ user privilege level 15
+ idle-timeout 1440 0
+ protocol inbound ssh
+user-interface vty 1 4
+ authentication-mode aaa
+ idle-timeout 1440 0
+ protocol inbound ssh
+#
+dot1x-access-profile name dot1x_access_profile
+#
+mac-access-profile name mac_access_profile
+#
+ops
+#
+autostart
+#
+secelog
+#
+ ms-channel 
+
+#
+return

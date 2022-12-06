@@ -45,3 +45,15 @@ SW4:
 #            extras:
 #                ssh_config_file: True
 #                auth_strict_key: False
+CE1:
+    hostname: 10.0.2.31
+    username: admin
+    password: python123
+    groups:
+        - huawei_group3
+PE1:
+    hostname: 10.0.2.32
+    username: admin
+    password: python123
+    groups:
+        - huawei_group3

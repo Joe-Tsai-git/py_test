@@ -6,3 +6,7 @@ cisco_group1:
  
 cisco_group2:
     platform: ios
+
+huawei_group3:
+    platform: huawei
+#    platform: huawei_vrp

@@ -1,0 +1,173 @@
+[V300R021C00SPC100T]
+#
+ sysname CE1
+#
+ set workmode sch-tm standalone
+#
+stp disable
+#
+authentication-profile name default_authen_profile
+authentication-profile name dot1x_authen_profile
+authentication-profile name dot1xmac_authen_profile
+authentication-profile name mac_authen_profile
+authentication-profile name multi_authen_profile
+authentication-profile name portal_authen_profile
+#
+dhcp enable
+#
+ ecc peer-public-key 10.0.2.31 encoding-type der
+  public-key-code begin
+    04686FAD 61FC05EC 556ACAB5 12D92E2E 9326335A 7876F16B 17595CC7 3647A9AF
+    18894B0E 3C8A731B 8850381F 2219DB00 7DC27913 54D064D9 BE19123B BB0A532D
+    7C
+  public-key-code end
+ peer-public-key end
+#
+ ecc peer-public-key 10.0.2.32 encoding-type der
+  public-key-code begin
+    04809E82 66CC8F13 DD2809B9 3A4C29BF E9A1DC1B 9DAA12D8 A3171927 AE123103
+    53E2005D 5E4727C2 05D15B81 B11B5478 8C1831E5 D2D900CE E72E98AE F6965664
+    51
+  public-key-code end
+ peer-public-key end
+#
+ ecc peer-public-key 10.0.2.33 encoding-type der
+  public-key-code begin
+    04AE3BE6 4FA4BAB0 61C93034 6C8D02E0 C8DB55E1 09A70081 2DC4CBD2 5C9FBF79
+    4D356802 B907ECD0 4FFA508A CF0279A7 F3CAD696 D571B104 4633605C 2A861A4B
+    A1
+  public-key-code end
+ peer-public-key end
+#
+ ecc peer-public-key 10.0.2.35 encoding-type der
+  public-key-code begin
+    040415C5 A6092E8C E637F248 A4CF90F7 6ACCEB37 A39BF790 6763033C C41981B5
+    FB002054 1168DE17 2CB69E9A D7593AA0 57E0BCCB 34D6FBD3 85A2D75E 6C15423F
+    1F
+  public-key-code end
+ peer-public-key end
+#
+ ecc peer-public-key 10.0.2.36 encoding-type der
+  public-key-code begin
+    048D0D58 770A49DF 803BCD15 F6F61143 E2224179 0D5B9D73 84816EB0 2A6457C4
+    C0722DCB EC04BA7B 6184EFF2 A69FEB7A D0D74922 C951BD2B E5D221D4 8C6946CC
+    07
+  public-key-code end
+ peer-public-key end
+#
+radius-server template default
+#
+pki realm default
+ certificate-check none
+#
+ssl policy default_policy type server
+ pki-realm default
+ version tls1.2 
+ ciphersuite rsa_aes_128_sha256 rsa_aes_256_sha256 ecdhe_rsa_aes128_gcm_sha256 ecdhe_rsa_aes256_gcm_sha384 
+#
+ike proposal default
+ encryption-algorithm aes-256 aes-192 aes-128 
+ dh group14 
+ authentication-algorithm sha2-512 sha2-384 sha2-256 
+ authentication-method pre-share
+ integrity-algorithm hmac-sha2-256 
+ prf hmac-sha2-256 
+#
+free-rule-template name default_free_rule
+#
+portal-access-profile name portal_access_profile
+#
+aaa
+ authentication-scheme default
+  authentication-mode local
+ authentication-scheme radius
+  authentication-mode radius
+ authorization-scheme default
+  authorization-mode local
+ accounting-scheme default
+  accounting-mode none
+ local-aaa-user password policy administrator
+ domain default
+  authentication-scheme default
+  accounting-scheme default
+  radius-server default
+ domain default_admin
+  authentication-scheme default
+  accounting-scheme default
+ local-user admin password irreversible-cipher $1a$A>`LTQl7F>$~j5nQ#cfDOLe#/M[PG91+37,Z=tMGJt8&GY:nCJC$
+ local-user admin privilege level 3
+ local-user admin service-type ssh
+ local-user python password irreversible-cipher $1a$~r8f4*z-p>$Gon}<#<)V%BfK"He`I&.eg&)*^9_!$hxH1#;}O\!$
+ local-user python privilege level 15
+ local-user python service-type terminal http
+#
+firewall zone Local
+#
+mi-server
+#
+interface GigabitEthernet0/0/0
+ ip address 10.1.12.1 255.255.255.0
+#
+interface GigabitEthernet0/0/1
+#
+interface GigabitEthernet0/0/2
+#
+interface GigabitEthernet0/0/3
+#
+interface GigabitEthernet0/0/4
+#
+interface GigabitEthernet0/0/5
+ ip address 10.0.2.31 255.255.255.0
+#
+interface GigabitEthernet0/0/6
+ description VirtualPort
+#
+interface NULL0
+#
+interface LoopBack0
+ ip address 1.1.1.1 255.255.255.255
+#
+ospf 1 router-id 1.1.1.1
+ area 0.0.0.0
+  network 1.1.1.1 0.0.0.0
+  network 10.1.12.1 0.0.0.0
+#
+undo icmp name timestamp-request receive
+#
+ snmp-agent local-engineid 800007DB03000000000000
+ snmp-agent trap enable
+#
+ ssh user admin authentication-type all
+ ssh client 10.0.2.31 assign ecc-key 10.0.2.31
+ ssh client 10.0.2.32 assign ecc-key 10.0.2.32
+ ssh client 10.0.2.33 assign ecc-key 10.0.2.33
+ ssh client 10.0.2.35 assign ecc-key 10.0.2.35
+ ssh client 10.0.2.36 assign ecc-key 10.0.2.36
+ ssh client first-time enable 
+ stelnet server enable 
+ ssh server permit interface all
+ ssh server-source -a 10.0.2.31
+#
+fib regularly-refresh disable
+#
+user-interface con 0
+ authentication-mode aaa
+ idle-timeout 1440 0
+user-interface vty 0 4
+ authentication-mode aaa
+ idle-timeout 1440 0
+#
+dot1x-access-profile name dot1x_access_profile
+#
+mac-access-profile name mac_access_profile
+#
+ops
+#
+autostart
+#
+secelog
+#
+ ms-channel 
+
+#
+return
