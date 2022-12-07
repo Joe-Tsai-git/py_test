@@ -1394,3 +1394,32 @@ You can also look at the Netmiko session_log or debug log for more information.
 
 
 
+2022-12-06 19:56:32,230 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'disp ip int bri', 'use_genie': True} on 2 hosts
+2022-12-06 19:56:43,746 - nornir.core.task -    ERROR -      start() - Host 'CE1': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 32, in netmiko_send_command
+    result = net_connect.send_command(command_string, **kwargs)
+  File "/root/venv3/lib64/python3.9/site-packages/netmiko/utilities.py", line 592, in wrapper_decorator
+    return func(self, *args, **kwargs)
+  File "/root/venv3/lib64/python3.9/site-packages/netmiko/base_connection.py", line 1721, in send_command
+    raise ReadTimeout(msg)
+netmiko.exceptions.ReadTimeout: 
+Pattern not detected: 'Info:\\ The\\ configuration\\ takes\\ effect\\ on\\ the\\ current\\ user\\ terminal\\ interface\\ only\\.' in output.
+
+Things you might try to fix this:
+1. Explicitly set your pattern using the expect_string argument.
+2. Increase the read_timeout to a larger value.
+
+You can also look at the Netmiko session_log or debug log for more information.
+
+
+
+2022-12-06 19:59:12,991 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'disp ip int bri', 'use_textfsm': True} on 2 hosts
+2022-12-06 20:01:42,746 -  nornir.core -  WARNING -        run() - Task 'netmiko_send_command' has not been run – 0 hosts selected
+2022-12-06 20:02:02,887 -  nornir.core -  WARNING -        run() - Task 'netmiko_send_command' has not been run – 0 hosts selected
+2022-12-06 20:04:48,494 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'disp ip int bri', 'use_textfsm': True} on 1 hosts
+2022-12-06 22:09:39,223 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'disp bgp vpnv4 vpn-inst ABC rou', 'use_textfsm': True} on 1 hosts
+2022-12-06 22:11:52,411 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'disp bgp vpnv4 vpn-inst ABC rou', 'use_textfsm': True} on 1 hosts
+2022-12-06 22:12:42,569 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'disp bgp vpnv4 vpn-inst ABC rou'} on 1 hosts

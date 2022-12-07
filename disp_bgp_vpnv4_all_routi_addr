@@ -1,0 +1,36 @@
+ BGP local router ID : 2.2.2.2
+ xyz BGxP 6.6.6.6/32:
+ Local AS number : 2345
+
+ Total routes of Route Distinguisher(2345:1): 1
+ BGP routing table entry information of 6.6.6.6/32:
+ Label information (Received/Applied): 1028/NULL
+ From: 5.5.5.5 (5.5.5.5)
+ Route Duration: 01h54m13s  
+ Relay IP Nexthop: 10.1.23.3
+ Relay IP Out-Interface: GigabitEthernet0/0/1
+ Relay Tunnel Out-Interface: GigabitEthernet0/0/1
+ Relay token: 0x5
+ Original nexthop: 5.5.5.5
+ Qos information : 0x0
+ Ext-Community:RT <2345 : 11>, OSPF DOMAIN ID <0.0.0.0 : 0>, 
+               OSPF ROUTER ID <10.1.56.5 : 0>, OSPF RT <0.0.0.0 : 1 : 0>
+ AS-path Nil, origin incomplete, MED 2, localpref 100, pref-val 0, valid, internal, best, select, pre 255, IGP cost 3
+ Not advertised to any peer yet
+
+
+ VPN-Instance ABC, Router ID 2.2.2.2:
+
+ Total Number of Routes: 1
+ BGP routing BGP 6.6.6.6/32:
+ Label information (Received/Applied): 1028/NULL
+ From: 5.5.5.5 (5.5.5.5)
+ Route Duration: 01h54m13s  
+ Relay Tunnel Out-Interface: GigabitEthernet0/0/1
+ Relay token: 0x5
+ Original nexthop: 5.5.5.5
+ Qos information : 0x0
+ Ext-Community:RT <2345 : 11>, OSPF DOMAIN ID <0.0.0.0 : 0>, 
+               OSPF ROUTER ID <10.1.56.5 : 0>, OSPF RT <0.0.0.0 : 1 : 0>
+ AS-path Nil, origin incomplete, MED 2, localpref 100, pref-val 0, valid, internal, best, select, active, pre 255, IGP cost 3
+ Not advertised to any peer yet
