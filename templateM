@@ -1,10 +1,7 @@
-Value ID (\d+)
-Value Hop (\S+)
-#Value RouteEntry (\S+/\S+)
-#Value VPNInstance (\S+)
-#Value VPNRouterID (\S+\.\S+\.\S+\.\S+)
+Value RouteEntry (\S+\d/\S+)
+Value Required VPNInstance (\S+)
+Value VPNRouterID (\S+\.\S+\.\S+\.\S+)
 
 Start
-  ^ ${ID} ${Hop} \d -> Record 
-#  ^ \S+ \S+ BGP ${RouteEntry}: -> Record
-#  ^\s+VPN-Instance+\s+Router+\s+ID+\s+${VPNRouterID} -> Record
+  ^\s+.+\s${RouteEntry}:
+  ^ VPN-Instance ${VPNInstance}, Router ID ${VPNRouterID}: -> Record

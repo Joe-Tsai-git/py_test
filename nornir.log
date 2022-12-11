@@ -1423,3 +1423,136 @@ You can also look at the Netmiko session_log or debug log for more information.
 2022-12-06 22:09:39,223 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'disp bgp vpnv4 vpn-inst ABC rou', 'use_textfsm': True} on 1 hosts
 2022-12-06 22:11:52,411 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'disp bgp vpnv4 vpn-inst ABC rou', 'use_textfsm': True} on 1 hosts
 2022-12-06 22:12:42,569 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'disp bgp vpnv4 vpn-inst ABC rou'} on 1 hosts
+2022-12-08 10:47:12,678 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'disp bgp vpnv4 all routi 6.6.6.6', 'use_textfsm': True} on 1 hosts
+2022-12-08 10:55:00,469 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'disp bgp vpnv4 all routi 6.6.6.6', 'use_textfsm': True} on 1 hosts
+2022-12-08 10:59:50,724 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'disp bgp vpnv4 all routi 6.6.6.6', 'use_textfsm': True} on 1 hosts
+2022-12-08 11:06:27,706 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'dis bgp vpnv4 all routing-table 6.6.6.6', 'use_textfsm': True} on 1 hosts
+2022-12-08 11:22:43,078 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'display interface brief', 'use_textfsm': True} on 1 hosts
+2022-12-08 11:28:04,716 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh interfaces switchport', 'use_textfsm': True} on 6 hosts
+2022-12-08 11:28:34,978 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh interfaces switchport'} on 6 hosts
+2022-12-08 15:02:37,593 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh int switchport'} on 6 hosts
+2022-12-08 15:02:46,824 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh interfaces switchport', 'use_textfsm': True} on 6 hosts
+2022-12-09 16:02:16,543 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'interfaces_ip']} on 6 hosts
+2022-12-09 16:02:16,570 - nornir.core.task -    ERROR -      start() - Host 'PE1': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_napalm/plugins/tasks/napalm_get.py", line 32, in napalm_get
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_napalm/plugins/connections/__init__.py", line 55, in open
+    network_driver = get_network_driver(platform)
+  File "/root/venv3/lib64/python3.9/site-packages/napalm/base/__init__.py", line 99, in get_network_driver
+    raise ModuleImportError(
+napalm.base.exceptions.ModuleImportError: Cannot import "huawei". Is the library installed?
+
+2022-12-09 16:02:16,572 - nornir.core.task -    ERROR -      start() - Host 'CE1': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_napalm/plugins/tasks/napalm_get.py", line 32, in napalm_get
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_napalm/plugins/connections/__init__.py", line 55, in open
+    network_driver = get_network_driver(platform)
+  File "/root/venv3/lib64/python3.9/site-packages/napalm/base/__init__.py", line 99, in get_network_driver
+    raise ModuleImportError(
+napalm.base.exceptions.ModuleImportError: Cannot import "huawei". Is the library installed?
+
+2022-12-09 16:56:07,520 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'interfaces_ip']} on 6 hosts
+2022-12-09 16:56:07,558 - nornir.core.task -    ERROR -      start() - Host 'CE1': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_napalm/plugins/tasks/napalm_get.py", line 32, in napalm_get
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_napalm/plugins/connections/__init__.py", line 55, in open
+    network_driver = get_network_driver(platform)
+  File "/root/venv3/lib64/python3.9/site-packages/napalm/base/__init__.py", line 99, in get_network_driver
+    raise ModuleImportError(
+napalm.base.exceptions.ModuleImportError: Cannot import "huawei". Is the library installed?
+
+2022-12-09 16:56:07,559 - nornir.core.task -    ERROR -      start() - Host 'PE1': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_napalm/plugins/tasks/napalm_get.py", line 32, in napalm_get
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_napalm/plugins/connections/__init__.py", line 55, in open
+    network_driver = get_network_driver(platform)
+  File "/root/venv3/lib64/python3.9/site-packages/napalm/base/__init__.py", line 99, in get_network_driver
+    raise ModuleImportError(
+napalm.base.exceptions.ModuleImportError: Cannot import "huawei". Is the library installed?
+
+2022-12-09 17:05:36,292 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh int switchport'} on 6 hosts
+2022-12-09 17:08:07,863 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'disp ip int brief'} on 2 hosts
+2022-12-09 17:10:45,129 -  nornir.core -     INFO -        run() - Running task "Backing up SW's configuration" with args {} on 2 hosts
+2022-12-09 17:10:45,140 - nornir.core.task -    ERROR -      start() - Host 'PE1': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_napalm/plugins/tasks/napalm_get.py", line 32, in napalm_get
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_napalm/plugins/connections/__init__.py", line 55, in open
+    network_driver = get_network_driver(platform)
+  File "/root/venv3/lib64/python3.9/site-packages/napalm/base/__init__.py", line 99, in get_network_driver
+    raise ModuleImportError(
+napalm.base.exceptions.ModuleImportError: Cannot import "huawei". Is the library installed?
+
+2022-12-09 17:10:45,141 - nornir.core.task -    ERROR -      start() - Host 'CE1': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_napalm/plugins/tasks/napalm_get.py", line 32, in napalm_get
+    device = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 494, in get_connection
+    self.open_connection(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/inventory.py", line 546, in open_connection
+    conn_obj.open(
+  File "/root/venv3/lib64/python3.9/site-packages/nornir_napalm/plugins/connections/__init__.py", line 55, in open
+    network_driver = get_network_driver(platform)
+  File "/root/venv3/lib64/python3.9/site-packages/napalm/base/__init__.py", line 99, in get_network_driver
+    raise ModuleImportError(
+napalm.base.exceptions.ModuleImportError: Cannot import "huawei". Is the library installed?
+
+2022-12-09 17:10:45,142 - nornir.core.task -    ERROR -      start() - Host 'PE1': task "Backing up SW's configuration" failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/py/py_test/nornir7.py", line 12, in backup_configurations
+    r=cisco.run(task=napalm_get, getters=["config"])
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_get (failed)
+
+
+2022-12-09 17:10:45,143 - nornir.core.task -    ERROR -      start() - Host 'CE1': task "Backing up SW's configuration" failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/py/py_test/nornir7.py", line 12, in backup_configurations
+    r=cisco.run(task=napalm_get, getters=["config"])
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 174, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_get (failed)
+
+
+2022-12-09 17:17:21,577 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh interfaces switchport', 'use_textfsm': True} on 6 hosts

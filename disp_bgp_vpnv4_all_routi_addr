@@ -1,12 +1,11 @@
- BGP local router ID : 2.2.2.2
- xyz BGxP 6.6.6.6/32:
- Local AS number : 2345
 
+ BGP local router ID : 2.2.2.2
+ Local AS number : 2345
  Total routes of Route Distinguisher(2345:1): 1
  BGP routing table entry information of 6.6.6.6/32:
  Label information (Received/Applied): 1028/NULL
  From: 5.5.5.5 (5.5.5.5)
- Route Duration: 01h54m13s  
+ Route Duration: 1d00h31m33s 
  Relay IP Nexthop: 10.1.23.3
  Relay IP Out-Interface: GigabitEthernet0/0/1
  Relay Tunnel Out-Interface: GigabitEthernet0/0/1
@@ -22,10 +21,10 @@
  VPN-Instance ABC, Router ID 2.2.2.2:
 
  Total Number of Routes: 1
- BGP routing BGP 6.6.6.6/32:
+ BGP routing table entry information of 6.6.6.6/32:
  Label information (Received/Applied): 1028/NULL
  From: 5.5.5.5 (5.5.5.5)
- Route Duration: 01h54m13s  
+ Route Duration: 1d00h31m33s 
  Relay Tunnel Out-Interface: GigabitEthernet0/0/1
  Relay token: 0x5
  Original nexthop: 5.5.5.5
