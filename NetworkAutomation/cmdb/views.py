@@ -6,4 +6,4 @@ def device_list(request):
         {'ip':'192.168.1.1','name':'dev01'}
     ]
 
-    return render(request, 'device_list.html', {'devices', devices})
+    return render(request, 'device_list.html', {'devices':devices})
