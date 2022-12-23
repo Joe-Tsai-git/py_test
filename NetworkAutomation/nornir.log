@@ -1,0 +1,25 @@
+2022-12-22 20:34:51,367 -  nornir.core -     INFO -        run() - Running task 'update_intfs_task' with args {} on 3 hosts
+2022-12-22 20:34:51,429 - nornir.core.task -    ERROR -      start() - Host 'SW1': task 'update_intfs_task' failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/py/py_test/NetworkAutomation/scripts/info_getter_tasks.py", line 15, in update_intfs_task
+    raise Exception('不支持的设备')
+Exception: 不支持的设备
+
+2022-12-22 20:34:51,653 - nornir.core.task -    ERROR -      start() - Host 'SW2': task 'update_intfs_task' failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/py/py_test/NetworkAutomation/scripts/info_getter_tasks.py", line 15, in update_intfs_task
+    raise Exception('不支持的设备')
+Exception: 不支持的设备
+
+2022-12-22 20:34:51,657 - nornir.core.task -    ERROR -      start() - Host 'SW7': task 'update_intfs_task' failed with traceback:
+Traceback (most recent call last):
+  File "/root/venv3/lib64/python3.9/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/root/py/py_test/NetworkAutomation/scripts/info_getter_tasks.py", line 15, in update_intfs_task
+    raise Exception('不支持的设备')
+Exception: 不支持的设备
+
