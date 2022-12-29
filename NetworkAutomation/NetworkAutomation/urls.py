@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from cmdb.views import device_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cmdb/', include(('cmdb.urls', 'cmdb')))
+    path('cmdb/', include(('cmdb.urls', 'cmdb'))),
+    path('device_list/', device_list, name='device_list'),
 ]
